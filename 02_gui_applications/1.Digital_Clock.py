@@ -1,64 +1,36 @@
-{
- "cells": [
-  {
-   "cell_type": "code",
-   "execution_count": 1,
-   "id": "d230bc9f-1206-4f6e-8093-f3245d7410d1",
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "from tkinter import Label, Tk \n",
-    "import time\n",
-    "app_window = Tk() \n",
-    "app_window.title(\"Digital Clock\") \n",
-    "app_window.geometry(\"420x150\") \n",
-    "app_window.resizable(1,1)\n",
-    "\n",
-    "text_font= (\"Boulder\", 68, 'bold')\n",
-    "background = \"#f2e750\"\n",
-    "foreground= \"#363529\"\n",
-    "border_width = 25\n",
-    "\n",
-    "label = Label(app_window, font=text_font, bg=background, fg=foreground, bd=border_width) \n",
-    "label.grid(row=0, column=1)\n",
-    "\n",
-    "def digital_clock(): \n",
-    "   time_live = time.strftime(\"%H:%M:%S\")\n",
-    "   label.config(text=time_live) \n",
-    "   label.after(200, digital_clock)\n",
-    "\n",
-    "digital_clock()\n",
-    "app_window.mainloop()"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "id": "27c74978-8437-4d29-af39-fcd309deac53",
-   "metadata": {},
-   "outputs": [],
-   "source": []
-  }
- ],
- "metadata": {
-  "kernelspec": {
-   "display_name": "Python 3 (ipykernel)",
-   "language": "python",
-   "name": "python3"
-  },
-  "language_info": {
-   "codemirror_mode": {
-    "name": "ipython",
-    "version": 3
-   },
-   "file_extension": ".py",
-   "mimetype": "text/x-python",
-   "name": "python",
-   "nbconvert_exporter": "python",
-   "pygments_lexer": "ipython3",
-   "version": "3.13.9"
-  }
- },
- "nbformat": 4,
- "nbformat_minor": 5
-}
+from tkinter import Label, Tk 
+import time
+
+# --- MAIN APPLICATION CORE INITIALIZATION ---
+app_window = Tk() 
+app_window.title("Digital Clock Studio") 
+app_window.geometry("440x160") 
+app_window.resizable(False, False) 
+
+# --- DESIGN PARAMETERS ---
+text_font = ("Helvetica", 48, 'bold')
+background = "#0F172A"  
+foreground = "#38BDF8"  
+border_width = 20
+
+# --- UI COMPONENTS ---
+label = Label(
+    app_window, 
+    font=text_font, 
+    bg=background, 
+    fg=foreground, 
+    bd=border_width
+) 
+label.pack(expand=True, fill="both")
+
+def digital_clock(): 
+    """Queries the OS system runtime clock to pull fresh time string data."""
+    time_live = time.strftime("%H:%M:%S")
+    label.config(text=time_live) 
+    label.after(200, digital_clock)
+
+# Fire up the initial pipeline execution sequence 
+digital_clock()
+
+# Run the persistent window thread manager
+# app_window.mainloop()
